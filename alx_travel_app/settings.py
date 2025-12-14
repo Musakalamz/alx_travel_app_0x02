@@ -70,7 +70,8 @@ WSGI_APPLICATION = 'alx_travel_app.wsgi.application'
 
 # Database
 DB_ENGINE = env('DB_ENGINE', default='mysql')
-if DB_ENGINE == 'sqlite':
+# Prefer SQLite in DEBUG to ensure quick local run; switch to MySQL in production.
+if DB_ENGINE == 'sqlite' or DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
